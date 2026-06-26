@@ -47,7 +47,7 @@ public class Stock {
 
     @Override
     public String toString(){
-        return getTicker() + " (" + getCompanyName() + ") " + "| " + getSector() + " | " + getPrice();
+        return getTicker() + " (" + getCompanyName() + ") " + "| " + getSector().getDescription() + " | $" + getPrice();
     }
 
     @Override
