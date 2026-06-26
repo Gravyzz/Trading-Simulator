@@ -19,8 +19,9 @@ public class Market {
     }
 
     public Stock getStock(String ticker){
-        if (stocks.get(ticker) == null) throw new StockNotFoundException("Акция " + ticker + " не найдена");
-        return stocks.get(ticker);
+        Stock stock = stocks.get(ticker);
+        if (stock == null) throw new StockNotFoundException("Акция " + ticker + " не найдена");
+        return stock;
     }
 
     public void updatePrice(String ticker, double newPrice){
