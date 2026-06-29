@@ -42,7 +42,7 @@ public class AnalyticsService {
 
     public List<String> getTickersByProfit(){
         return portfolio.getAllPositions().stream()
-                .filter(p -> p.getProfit(market.getStock(p.getTicker()).getPrice()) > 0)
+                .filter(p -> p.getProfit(getCurrentPrice(p)) > 0)
                 .map(Position::getTicker)
                 .collect(Collectors.toList());
     }

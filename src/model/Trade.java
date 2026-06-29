@@ -16,7 +16,7 @@ public class Trade {
 
 
     public Trade(String ticker, TradeType type, int quantity, double price, long timestamp) {
-        if (ticker == null || ticker.isBlank() || type == null || quantity<=0 || price <= 0) throw new InvalidOrderException("Ошибка");
+        if (ticker == null || ticker.isBlank() || type == null || quantity<=0 || price <= 0) throw new InvalidOrderException("Некорректные данные сделки");
 
         this.ticker = ticker;
         this.type = type;

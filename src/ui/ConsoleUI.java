@@ -13,7 +13,7 @@ import java.util.*;
 
 public class ConsoleUI {
 
-   private final Market market;
+    private final Market market;
     private final Portfolio portfolio;
     private final TradingService trading;
     private final AnalyticsService analytics;

@@ -11,7 +11,7 @@ public class Position {
     public Position(String ticker, int quantity, double averagePrice){
         if (ticker == null || ticker.isBlank()) throw new InvalidOrderException("Пусто");
         if (quantity <= 0) throw new InvalidOrderException("Минимум 1 акция");
-        if (averagePrice <= 0) throw new InvalidOrderException("Цена не может быть отрицательной");
+        if (averagePrice <= 0) throw new InvalidOrderException("Цена олжна быть положительной");
 
         this.ticker = ticker;
         this.quantity = quantity;
