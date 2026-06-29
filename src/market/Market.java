@@ -18,17 +18,17 @@ public class Market {
         stocks.put(stock.getTicker(), stock);
     }
 
-    public Stock getStock(String ticker){
+    public synchronized Stock getStock(String ticker){
         Stock stock = stocks.get(ticker);
         if (stock == null) throw new StockNotFoundException("Акция " + ticker + " не найдена");
         return stock;
     }
 
-    public void updatePrice(String ticker, double newPrice){
+    public synchronized void updatePrice(String ticker, double newPrice){
         getStock(ticker).setPrice(newPrice);
     }
 
-    public List<Stock> getAllStocks(){
+    public synchronized List<Stock> getAllStocks(){
         return new ArrayList<>(stocks.values());
     }
 
@@ -41,5 +41,9 @@ public class Market {
     public int size(){
         return stocks.size();
     }
+
+
+
+
 
 }

@@ -7,6 +7,7 @@ import model.Portfolio;
 import model.Position;
 import model.Trade;
 import model.TradeType;
+import order.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,15 @@ public class TradingService {
 
     public List<Trade> getTradeHistory(){
         return new ArrayList<>(tradeHistory);
+    }
+
+    public boolean executeOrder(Order order){
+        double currentPrice = market.getStock(order.getTicker()).getPrice();
+        if (order.canExecute(currentPrice)) {
+            buy(order.getTicker(), order.getQuantity());   // ← зовём твой существующий buy
+            return true;
+        }
+        return false;
     }
 
 }

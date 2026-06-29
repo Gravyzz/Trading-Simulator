@@ -11,17 +11,21 @@ public class Trade {
     private final long timestamp;
 
     public Trade(String ticker, TradeType type, int quantity, double price) {
+        this(ticker, type, quantity, price, System.currentTimeMillis());
+    }
 
+
+    public Trade(String ticker, TradeType type, int quantity, double price, long timestamp) {
         if (ticker == null || ticker.isBlank() || type == null || quantity<=0 || price <= 0) throw new InvalidOrderException("Ошибка");
-
-
 
         this.ticker = ticker;
         this.type = type;
         this.quantity = quantity;
         this.price = price;
-        this.timestamp = System.currentTimeMillis();
+        this.timestamp = timestamp;
     }
+
+
 
     public String getTicker() {
         return ticker;
