@@ -59,14 +59,23 @@ public class TradingService {
         return new ArrayList<>(tradeHistory);
     }
 
-    public boolean executeOrder(Order order){
-        double currentPrice = market.getStock(order.getTicker()).getPrice();
-        if (order.canExecute(currentPrice)) {
-            buy(order.getTicker(), order.getQuantity());   
-            return true;
-        }
-        return false;
+    public boolean executeOrder(Order order) {
+    double currentPrice = market.getStock(order.getTicker()).getPrice();
+    if (!order.canExecute(currentPrice)) return false;
+
+    double executionPrice = order.getExecutionPrice(currentPrice);
+    double cost = executionPrice * order.getQuantity();
+    if (cost > portfolio.getBalance()) throw new InsufficientFundsException("Недостаточно средств");
+
+    portfolio.withdraw(cost);
+    if (portfolio.hasPosition(order.getTicker())) {
+        portfolio.getPosition(order.getTicker()).addShares(order.getQuantity(), executionPrice);
+    } else {
+        portfolio.addPosition(new Position(order.getTicker(), order.getQuantity(), executionPrice));
     }
+    tradeHistory.add(new Trade(order.getTicker(), TradeType.BUY, order.getQuantity(), executionPrice));
+    return true;
+}
 
     public TradingService(Market market, Portfolio portfolio, List<Trade> history) {
     this.market = market;
