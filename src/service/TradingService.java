@@ -62,7 +62,7 @@ public class TradingService {
     public boolean executeOrder(Order order){
         double currentPrice = market.getStock(order.getTicker()).getPrice();
         if (order.canExecute(currentPrice)) {
-            buy(order.getTicker(), order.getQuantity());   // ← зовём твой существующий buy
+            buy(order.getTicker(), order.getQuantity());   
             return true;
         }
         return false;
