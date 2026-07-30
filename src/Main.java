@@ -22,6 +22,7 @@ public class Main {
         TradingService trading = new TradingService(market, portfolio);
         AnalyticsService analytics = new AnalyticsService(portfolio, market);
         TradeRepository repository = new TradeRepository("trades.txt");
+        TradingService trading = new TradingService(market, portfolio, repository.load());
         PriceUpdater updater = new PriceUpdater(market);
 
         // собираем UI и запускаем
