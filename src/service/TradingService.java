@@ -27,8 +27,8 @@ public class TradingService {
 
     public void buy(String ticker, int quantity){
         if (quantity <= 0) throw new InvalidOrderException("Количество должно быть положительным");
-        double price = market.getStock(ticker).getPrice();   // цена ЗА АКЦИЮ (150)
-        double cost = price * quantity;                        // СТОИМОСТЬ сделки (1500)
+        double price = market.getStock(ticker).getPrice();   
+        double cost = price * quantity;                        
 
         if (cost > portfolio.getBalance()) throw new InsufficientFundsException("Недостаточно средств");
         portfolio.withdraw(cost);                              // списываем СТОИМОСТЬ
