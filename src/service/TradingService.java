@@ -24,6 +24,12 @@ public class TradingService {
         this.tradeHistory = new ArrayList<>();
     }
 
+    public TradingService(Market market, Portfolio portfolio, List<Trade> history) {
+        this.market = market;
+        this.portfolio = portfolio;
+        this.tradeHistory = new ArrayList<>(history);
+    }
+
 
     public void buy(String ticker, int quantity){
         if (quantity <= 0) throw new InvalidOrderException("Количество должно быть положительным");
@@ -77,10 +83,5 @@ public class TradingService {
     return true;
 }
 
-    public TradingService(Market market, Portfolio portfolio, List<Trade> history) {
-    this.market = market;
-    this.portfolio = portfolio;
-    this.tradeHistory = new ArrayList<>(history);
-}
 
 }
