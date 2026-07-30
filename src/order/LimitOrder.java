@@ -19,8 +19,8 @@ public class LimitOrder extends Order {
     }
 
     @Override
-    public double getExecutionPrice(double currentPrice){
-        return currentPrice;
+    public double getExecutionPrice(double currentPrice) {
+        return Math.min(currentPrice, limitPrice);
     }
 
     public double getLimitPrice() {
