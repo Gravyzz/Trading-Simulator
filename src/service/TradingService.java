@@ -68,4 +68,10 @@ public class TradingService {
         return false;
     }
 
+    public TradingService(Market market, Portfolio portfolio, List<Trade> history) {
+    this.market = market;
+    this.portfolio = portfolio;
+    this.tradeHistory = new ArrayList<>(history);
+}
+
 }
