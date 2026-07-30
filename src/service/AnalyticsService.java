@@ -36,8 +36,8 @@ public class AnalyticsService {
 
     public Position getMostValuablePosition(){
         return portfolio.getAllPositions().stream()
-                .max(Comparator.comparingDouble((Position p) -> p.getValue(getCurrentPrice(p)) ))   // максимум по стоимости
-                .orElse(null);                                            // достать из Optional, или null если пусто
+                .max(Comparator.comparingDouble((Position p) -> p.getValue(getCurrentPrice(p)) ))   
+                .orElse(null);                                            
     }
 
     public List<String> getTickersByProfit(){
